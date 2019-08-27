@@ -1,9 +1,16 @@
 import React from 'react'
 import Book from '../Book/Book'
 
-const BookList = () => {
+const BookList = ({books}) => {
 	return(
-    	<Book />
+      <div className="books-grid">
+      	{books.map(book => <Book 
+     					   	 key={book.id} 
+						   	 title={book.title} 
+						   	 cover={book.imageLinks.thumbnail} 
+						   	 author={book.authors.map(author => author)}
+						   />)}
+      </div>
     )
 }
 

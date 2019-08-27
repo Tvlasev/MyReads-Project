@@ -1,11 +1,11 @@
 import React from 'react'
 import BookList from '../BookList/BookList'
 
-const Shelf = () => {
+const Shelf = ({books}) => {
   
 	return(
     	<div>
-      		<BookList />
+      		<BookList books={books}/>
       	</div>
     )
 }

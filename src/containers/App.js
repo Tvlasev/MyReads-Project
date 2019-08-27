@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import * as BooksAPI from '../backend/BooksAPI'
+import * as BooksAPI from '../backend/BooksAPI'
 import './App.css'
 import Shelf from '../components/Shelf/Shelf'
 import Header from '../components/Header/Header'
@@ -9,24 +9,30 @@ import { Route } from 'react-router-dom'
 
 class BooksApp extends Component {
   state = {
-    showSearchPage: false,
+    books: [],
     currentlyReading: [],
     wantToRead: [],
     read: []
   }
 
+  componentDidMount = () => {
+  	BooksAPI.getAll()
+    	.then(data => this.setState({...this.state, books: data}))
+  } 
+
   render() {
+    console.log(this.state)
     return (
     	<div>
          	<Route exact path="/" render={props => 
          		<div>
          			<Header />
             		<h2 className="bookshelf-title">Currently Reading</h2>
-      				<Shelf />
+      				<Shelf books={this.state.books}/>
       				<h2 className="bookshelf-title">Want To Read</h2>
-      				<Shelf />
+      				<Shelf books={this.state.books}/>
       				<h2 className="bookshelf-title">Read</h2>
-      				<Shelf />
+      				<Shelf books={this.state.books}/>
         			<Button />
          		</div>
          	} />
