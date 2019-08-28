@@ -1,9 +1,10 @@
 import React from 'react'
+import BookList from '../../BookList/BookList'
 
-const AllBooks = () => {
+const AllBooks = ({allBooks}) => {
 	return(
-    	<div>
-      		<h1>All Books Here...</h1>
+    	<div className="books-grid">
+      		<BookList books={allBooks}/>
       	</div>
     )
 }

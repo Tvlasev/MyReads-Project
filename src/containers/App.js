@@ -10,15 +10,17 @@ import { Route } from 'react-router-dom'
 class BooksApp extends Component {
   state = {
     books: [],
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
   }
 
   componentDidMount = () => {
   	BooksAPI.getAll()
     	.then(data => this.setState({...this.state, books: data}))
-  } 
+  }
+
+  renderCorrectShelfOfBooks = (shelf) => {
+  	const books = this.state.books.filter(book => book.shelf === shelf)
+    return (<Shelf books={books}/>)
+  }
 
   render() {
     console.log(this.state)
@@ -28,15 +30,15 @@ class BooksApp extends Component {
          		<div>
          			<Header />
             		<h2 className="bookshelf-title">Currently Reading</h2>
-      				<Shelf books={this.state.books}/>
+      				{this.renderCorrectShelfOfBooks("currentlyReading")}
       				<h2 className="bookshelf-title">Want To Read</h2>
-      				<Shelf books={this.state.books}/>
+      				{this.renderCorrectShelfOfBooks("wantToRead")}
       				<h2 className="bookshelf-title">Read</h2>
-      				<Shelf books={this.state.books}/>
+      				{this.renderCorrectShelfOfBooks("read")}
         			<Button />
          		</div>
          	} />
-         	<Route exact path="/search-books" component={SearchPage} />
+         	<Route exact path="/search-books" render={props => <SearchPage books={this.state.books}/>} />
 		</div>
     )
   }
