@@ -19,7 +19,11 @@ class BooksApp extends Component {
 
   renderCorrectShelfOfBooks = (shelf) => {
   	const books = this.state.books.filter(book => book.shelf === shelf)
-    return (<Shelf books={books}/>)
+    return (<Shelf books={books} handleShelfChange={this.handleShelfChange}/>)
+  }
+
+  handleShelfChange = (e, bookID) => {
+  	console.log(e.target.value, "\nbook id: ", bookID)
   }
 
   render() {
@@ -27,7 +31,7 @@ class BooksApp extends Component {
     return (
     	<div>
          	<Route exact path="/" render={props => 
-         		<div>
+         		<div className="bookshelf">
          			<Header />
             		<h2 className="bookshelf-title">Currently Reading</h2>
       				{this.renderCorrectShelfOfBooks("currentlyReading")}

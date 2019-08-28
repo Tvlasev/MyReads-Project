@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Dropdown = () => {
+const Dropdown = ({bookID, handleShelfChange}) => {
 	return (
     	<div className="book-shelf-changer">
-           <select>
+           <select onChange={(e) => handleShelfChange(e, bookID)}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
         	  <option value="wantToRead">Want to Read</option>

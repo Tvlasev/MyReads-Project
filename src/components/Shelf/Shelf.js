@@ -1,11 +1,11 @@
 import React from 'react'
 import BookList from '../BookList/BookList'
 
-const Shelf = ({books}) => {
+const Shelf = ({books, handleShelfChange}) => {
   
 	return(
     	<div>
-      		<BookList books={books}/>
+      		<BookList books={books} handleShelfChange={handleShelfChange}/>
       	</div>
     )
 }
