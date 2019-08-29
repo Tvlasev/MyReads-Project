@@ -1,5 +1,6 @@
 import React from 'react'
 import Dropdown from '../Dropdown/Dropdown'
+import PropTypes from 'prop-types'
 
 const Book = ({title, cover, author, bookID, handleShelfChange, books, book}) => {
   return (
@@ -24,6 +25,16 @@ const Book = ({title, cover, author, bookID, handleShelfChange, books, book}) =>
         </div>
       </div>
     )
+  }
+
+  Book.propTypes = {
+    books: PropTypes.array.isRequired,
+    handleShelfChange: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+    bookID: PropTypes.string,
+    author: PropTypes.array,
+    cover: PropTypes.string
   }
       
 export default Book

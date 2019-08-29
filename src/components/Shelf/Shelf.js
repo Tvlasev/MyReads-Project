@@ -1,5 +1,6 @@
 import React from 'react'
 import BookList from '../BookList/BookList'
+import PropTypes from 'prop-types'
 
 const Shelf = ({ books, handleShelfChange }) => {
 
@@ -8,6 +9,11 @@ const Shelf = ({ books, handleShelfChange }) => {
       <BookList books={books} handleShelfChange={handleShelfChange} />
     </div>
   )
+}
+
+Shelf.propTypes = {
+  books: PropTypes.array.isRequired,
+  handleShelfChange: PropTypes.func.isRequired
 }
 
 export default Shelf

@@ -36,7 +36,6 @@ class BooksApp extends Component {
 	}
 
 	render() {
-		console.log(this.state)
 		return (
 			<div>
 				<Route exact path="/" render={props =>

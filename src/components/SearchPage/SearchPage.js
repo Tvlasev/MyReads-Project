@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchField from './SearchField/SearchField'
 import AllBooks from './AllBooks/AllBooks'
 import * as BooksAPI from '../../backend/BooksAPI'
+import PropTypes from 'prop-types'
 
 class SearchPage extends Component {
   state = {
@@ -25,17 +26,18 @@ class SearchPage extends Component {
   };
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <SearchField handleSearchResults={this.handleSearchResults} handleSearchInputChange={this.handleSearchInputChange} />
-        { this.state.noResults 
-        ? (<h1>Sorry, No results</h1>) 
-        : (<AllBooks handleShelfChange={this.props.handleShelfChange} allBooks={this.state.allBooks} />)
-        }
+        { this.state.noResults ? (<h1 style={{ textAlign: "center" }}>Sorry, no results found</h1>) : null }
+        <AllBooks handleShelfChange={this.props.handleShelfChange} allBooks={this.state.allBooks} />
       </div>
     )
   }
+}
+
+SearchPage.propTypes = {
+  handleShelfChange: PropTypes.func.isRequired
 }
 
 export default SearchPage

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Dropdown = ({ handleShelfChange, book }) => {
 
@@ -13,6 +14,11 @@ const Dropdown = ({ handleShelfChange, book }) => {
 			</select>
 		</div>
 	)
+}
+
+Dropdown.propTypes = {
+	book: PropTypes.object.isRequired,
+	handleShelfChange: PropTypes.func.isRequired
 }
 
 export default Dropdown

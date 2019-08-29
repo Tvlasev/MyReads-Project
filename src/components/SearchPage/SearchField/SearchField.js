@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const SearchField = ({ handleSearchResults }) => {
   return (
@@ -18,6 +19,10 @@ const SearchField = ({ handleSearchResults }) => {
       </div>
     </div>
   )
+}
+
+SearchField.propTypes = {
+  handleSearchResults: PropTypes.func.isRequired
 }
 
 export default SearchField
