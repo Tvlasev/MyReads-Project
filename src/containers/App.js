@@ -15,6 +15,7 @@ class BooksApp extends Component {
 	componentDidMount = () => {
 		BooksAPI.getAll()
 			.then(data => this.setState({ ...this.state, books: data }))
+			.catch(e => console.log(e))
 	}
 
 	renderCorrectShelfOfBooks = (shelf) => {
@@ -22,8 +23,16 @@ class BooksApp extends Component {
 		return (<Shelf books={books} handleShelfChange={this.handleShelfChange} />)
 	}
 
-	handleShelfChange = (e, bookID, book) => {
-		console.log(e.target.value, "\nbook id: ", bookID, "\nBook: ", book)
+	handleShelfChange = (book, e) => {
+		book.shelf = e.target.value
+
+		BooksAPI.update(book, e.target.value)
+			.then(data => {
+				this.state.books.filter(b => b.id !== book.id).concat(book)
+		})
+		.catch(e => console.log(e))
+
+		this.setState({...this.state, books: this.state.books})
 	}
 
 	render() {
