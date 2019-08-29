@@ -22,8 +22,8 @@ class BooksApp extends Component {
 		return (<Shelf books={books} handleShelfChange={this.handleShelfChange} />)
 	}
 
-	handleShelfChange = (e, bookID) => {
-		console.log(e.target.value, "\nbook id: ", bookID)
+	handleShelfChange = (e, bookID, book) => {
+		console.log(e.target.value, "\nbook id: ", bookID, "\nBook: ", book)
 	}
 
 	render() {
@@ -42,7 +42,7 @@ class BooksApp extends Component {
 						<Button />
 					</div>
 				} />
-				<Route exact path="/search-books" render={props => <SearchPage books={this.state.books} />} />
+				<Route exact path="/search-books" render={props => <SearchPage handleShelfChange={this.handleShelfChange} books={this.state.books} />} />
 			</div>
 		)
 	}

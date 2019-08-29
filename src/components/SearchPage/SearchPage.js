@@ -5,12 +5,12 @@ import * as BooksAPI from '../../backend/BooksAPI'
 
 class SearchPage extends Component {
   state = {
-    query: 'R',
+    query: '',
     allBooks: []
   }
 
   componentDidMount = () => {
-    BooksAPI.search(this.state.query, 20)
+    BooksAPI.search('R', 20)
       .then(data => this.setState({ ...this.state, allBooks: data }))
   }
 
@@ -23,7 +23,7 @@ class SearchPage extends Component {
     return (
       <div>
         <SearchField handleSearchInputChange={this.handleSearchInputChange} />
-        <AllBooks allBooks={this.state.allBooks} />
+        <AllBooks handleShelfChange={this.props.handleShelfChange} allBooks={this.state.allBooks} />
       </div>
     )
   }
