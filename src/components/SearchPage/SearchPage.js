@@ -6,24 +6,33 @@ import * as BooksAPI from '../../backend/BooksAPI'
 class SearchPage extends Component {
   state = {
     query: '',
-    allBooks: []
+    allBooks: [],
+    noResults: false
   }
 
-  componentDidMount = () => {
-    BooksAPI.search('R', 20)
-      .then(data => this.setState({ ...this.state, allBooks: data }))
-  }
+  handleSearchResults = e => {
+    const query = e.target.value;
+    this.setState({ ...this.state, query });
 
-  handleSearchInputChange = (e) => {
-    this.setState({ ...this.state, query: e.target.value })
-  }
+    if (query) {
+      BooksAPI.search(query, 20).then(books => {
+        books.length > 0
+          ? this.setState({ allBooks: books, noResults: false })
+          : this.setState({ allBooks: [], noResults: true });
+      });
+
+    } else this.setState({ allBooks: [], noResults: false });
+  };
 
   render() {
     console.log(this.state)
     return (
       <div>
-        <SearchField handleSearchInputChange={this.handleSearchInputChange} />
-        <AllBooks handleShelfChange={this.props.handleShelfChange} allBooks={this.state.allBooks} />
+        <SearchField handleSearchResults={this.handleSearchResults} handleSearchInputChange={this.handleSearchInputChange} />
+        { this.state.noResults 
+        ? (<h1>Sorry, No results</h1>) 
+        : (<AllBooks handleShelfChange={this.props.handleShelfChange} allBooks={this.state.allBooks} />)
+        }
       </div>
     )
   }
