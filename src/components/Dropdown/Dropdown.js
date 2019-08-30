@@ -5,7 +5,7 @@ const Dropdown = ({ handleShelfChange, book, bookCurrentShelf }) => {
 
 	return (
 		<div className="book-shelf-changer">
-			<select onChange={(e) => handleShelfChange(book, e)} defaultValue={bookCurrentShelf}>
+			<select onChange={(e) => handleShelfChange(book, e)} defaultChecked={bookCurrentShelf} defaultValue={bookCurrentShelf}>
 				<option value="move" disabled>Move to...</option>
 				<option value="currentlyReading">Currently Reading</option>
 				<option value="wantToRead">Want to Read</option>
@@ -18,7 +18,8 @@ const Dropdown = ({ handleShelfChange, book, bookCurrentShelf }) => {
 
 Dropdown.propTypes = {
 	book: PropTypes.object.isRequired,
-	handleShelfChange: PropTypes.func.isRequired
+	handleShelfChange: PropTypes.func.isRequired,
+	bookCurrentShelf: PropTypes.string.isRequired
 }
 
 export default Dropdown

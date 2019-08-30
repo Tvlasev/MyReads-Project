@@ -1,6 +1,7 @@
 import React from 'react'
 import Book from '../Book/Book'
 import PropTypes from 'prop-types'
+import noBookCover from '../../images/no-book-cover.jpg'
 
 const BookList = ({ books, handleShelfChange }) => {
   return (
@@ -12,8 +13,8 @@ const BookList = ({ books, handleShelfChange }) => {
         bookCurrentShelf={book.shelf ? book.shelf : "none"}
         bookID={book.id}
         title={book.title}
-        cover={book.imageLinks.thumbnail ? book.imageLinks.thumbnail : null}
-        author={book.authors ? book.authors.map(author => author) : null}
+        cover={book.imageLinks ? book.imageLinks.thumbnail : noBookCover}
+        author={book.authors ? book.authors.map(author => `${author} `) : null}
         handleShelfChange={handleShelfChange}
       />)}
     </div>

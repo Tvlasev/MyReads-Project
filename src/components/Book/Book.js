@@ -34,7 +34,8 @@ const Book = ({title, cover, author, bookID, handleShelfChange, books, book, boo
     title: PropTypes.string.isRequired,
     bookID: PropTypes.string,
     author: PropTypes.array,
-    cover: PropTypes.string
+    cover: PropTypes.string,
+    bookCurrentShelf: PropTypes.string
   }
       
 export default Book
