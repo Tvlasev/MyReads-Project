@@ -2,7 +2,7 @@ import React from 'react'
 import Dropdown from '../Dropdown/Dropdown'
 import PropTypes from 'prop-types'
 
-const Book = ({title, cover, author, bookID, handleShelfChange, books, book}) => {
+const Book = ({title, cover, author, bookID, handleShelfChange, books, book, bookCurrentShelf}) => {
   return (
     <div className="list-books-content">
       <div>
@@ -13,7 +13,7 @@ const Book = ({title, cover, author, bookID, handleShelfChange, books, book}) =>
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${cover})` }}></div>
-					<Dropdown books={books} book={book} bookID={bookID} handleShelfChange={handleShelfChange}/>
+					<Dropdown bookCurrentShelf={bookCurrentShelf} books={books} book={book} bookID={bookID} handleShelfChange={handleShelfChange}/>
 					</div>
                     <div className="book-title">{title}</div>
                     <div className="book-authors">{author}</div>

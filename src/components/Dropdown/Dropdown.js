@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Dropdown = ({ handleShelfChange, book }) => {
+const Dropdown = ({ handleShelfChange, book, bookCurrentShelf }) => {
 
 	return (
 		<div className="book-shelf-changer">
-			<select onChange={(e) => handleShelfChange(book, e)}>
-				<option value="move">Move to...</option>
+			<select onChange={(e) => handleShelfChange(book, e)} defaultValue={bookCurrentShelf}>
+				<option value="move" disabled>Move to...</option>
 				<option value="currentlyReading">Currently Reading</option>
 				<option value="wantToRead">Want to Read</option>
 				<option value="read">Read</option>

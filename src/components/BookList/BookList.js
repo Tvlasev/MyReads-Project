@@ -9,10 +9,11 @@ const BookList = ({ books, handleShelfChange }) => {
         books={books}
         key={book.id}
         book={book}
+        bookCurrentShelf={book.shelf ? book.shelf : "none"}
         bookID={book.id}
         title={book.title}
         cover={book.imageLinks.thumbnail ? book.imageLinks.thumbnail : null}
-        author={book.atuthors ? book.authors.map(author => author) : null}
+        author={book.authors ? book.authors.map(author => author) : null}
         handleShelfChange={handleShelfChange}
       />)}
     </div>
