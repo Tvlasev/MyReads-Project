@@ -5,7 +5,8 @@ import Shelf from '../components/Shelf/Shelf'
 import Header from '../components/Header/Header'
 import Button from '../components/Button/Button'
 import SearchPage from '../components/SearchPage/SearchPage'
-import { Route } from 'react-router-dom'
+import Page404 from '../components/Page404/Page404'
+import { Switch, Route } from 'react-router-dom'
 
 class BooksApp extends Component {
 	state = {
@@ -40,19 +41,25 @@ class BooksApp extends Component {
 	render() {
 		return (
 			<div>
-				<Route exact path="/" render={props =>
-					<div className="bookshelf">
-						<Header />
-						<h2 className="bookshelf-title">Currently Reading</h2>
-						{this.renderCorrectShelfOfBooks("currentlyReading")}
-						<h2 className="bookshelf-title">Want To Read</h2>
-						{this.renderCorrectShelfOfBooks("wantToRead")}
-						<h2 className="bookshelf-title">Read</h2>
-						{this.renderCorrectShelfOfBooks("read")}
-						<Button />
-					</div>
-				} />
-				<Route exact path="/search-books" render={props => <SearchPage handleShelfChange={this.handleShelfChange} books={this.state.books} />} />
+				<Switch>
+					<Route exact path="/" render={props =>
+						<div className="bookshelf">
+							<Header />
+							<h2 className="bookshelf-title">Currently Reading</h2>
+							{this.renderCorrectShelfOfBooks("currentlyReading")}
+							<h2 className="bookshelf-title">Want To Read</h2>
+							{this.renderCorrectShelfOfBooks("wantToRead")}
+							<h2 className="bookshelf-title">Read</h2>
+							{this.renderCorrectShelfOfBooks("read")}
+							<Button />
+						</div>
+					} />
+					<Route 
+					exact path="/search-books" 
+					render={props => <SearchPage handleShelfChange={this.handleShelfChange} books={this.state.books} />} 
+					/>
+					<Route component={Page404} />
+				</Switch>
 			</div>
 		)
 	}
