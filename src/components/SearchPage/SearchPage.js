@@ -13,7 +13,7 @@ class SearchPage extends Component {
 
   handleSearchResults = e => {
     const query = e.target.value;
-    this.setState({ ...this.state, query });
+    this.setState({ ...this.state, query })
 
     if (query) {
       BooksAPI.search(query, 20).then(books => {
@@ -29,10 +29,10 @@ class SearchPage extends Component {
             this.setState({ allBooks: [], noResults: true })
           }
         }
-      });
+      })
 
     } else this.setState({ allBooks: [], noResults: false });
-  };
+  }
 
   render() {
     return (

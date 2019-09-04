@@ -39,18 +39,31 @@ class BooksApp extends Component {
 	}
 
 	render() {
+		const { books } = this.state
+		const shelfTypes = [
+			{ type: 'currentlyReading', title: 'Currently Reading' },
+			{ type: 'wantToRead', title: 'Want to Read' },
+			{ type: 'read', title: 'Read' }
+		]
+
 		return (
 			<div>
 				<Switch>
 					<Route exact path="/" render={props =>
 						<div className="bookshelf">
 							<Header />
-							<h2 className="bookshelf-title">Currently Reading</h2>
-							{this.renderCorrectShelfOfBooks("currentlyReading")}
-							<h2 className="bookshelf-title">Want To Read</h2>
-							{this.renderCorrectShelfOfBooks("wantToRead")}
-							<h2 className="bookshelf-title">Read</h2>
-							{this.renderCorrectShelfOfBooks("read")}
+							<div className="list-books-content">
+								{shelfTypes.map((shelf, index) => {
+									return (
+										<div className="bookshelf" key={index}>
+											<h2 className="bookshelf-title">{shelf.title}</h2>
+											<div className="bookshelf-books">
+												<Shelf books={books.filter(book => book.shelf === shelf.type)} handleShelfChange={this.handleShelfChange} />
+											</div>
+										</div>
+									);
+								})}
+							</div>
 							<Button />
 						</div>
 					} />
