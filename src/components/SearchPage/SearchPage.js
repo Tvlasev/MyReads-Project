@@ -17,9 +17,18 @@ class SearchPage extends Component {
 
     if (query) {
       BooksAPI.search(query, 20).then(books => {
-        books.length > 0
-          ? this.setState({ allBooks: books, noResults: false })
-          : this.setState({ allBooks: [], noResults: true });
+        if(query === this.state.query){
+          if(books.length > 0 && this.props.books.length > 0){
+            for(let i=0; i < books.length; i++){
+              this.props.books.find(book => book.id === books[i].id ? books[i].shelf = book.shelf : null)
+            }
+
+            this.setState({ allBooks: books, noResults: false })
+          }else{
+
+            this.setState({ allBooks: [], noResults: true })
+          }
+        }
       });
 
     } else this.setState({ allBooks: [], noResults: false });
